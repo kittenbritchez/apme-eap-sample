@@ -1,0 +1,38 @@
+---
+- hosts: all
+  gather_facts: false
+  vars:
+    empty_value: ""
+    desired_state: true
+  tasks:
+    - ansible.builtin.command: echo "demo"
+
+    - name: Use a shell pipeline without pipefail
+      ansible.builtin.shell: cat /etc/hosts | head -n 1
+
+    - name: Install the latest package
+      ansible.builtin.package:
+        name: nginx
+        state: latest
+
+    - name: Run a command without changed_when
+      ansible.builtin.command: /usr/bin/true
+
+    - name: Ignore a failed command
+      ansible.builtin.command: /usr/bin/false
+      ignore_errors: true
+
+    - name: Compare to an empty string
+      ansible.builtin.debug:
+        msg: "A value was provided"
+      when: empty_value == ""
+
+    - name: Use a literal boolean in when
+      ansible.builtin.debug:
+        msg: "This is a demo"
+      when: true
+
+    - name: Write a file without explicit mode
+      ansible.builtin.copy:
+        content: "demo\n"
+        dest: /tmp/apme-demo.txt

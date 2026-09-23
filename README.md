@@ -21,3 +21,15 @@ role structure, and dependency review without requiring an AAP controller.
 
 The inventory uses `localhost` with a local connection. Do not replace it with
 production hosts or add secrets to this fixture.
+
+## Additional remediation fixtures
+
+The `fixtures/` directory contains isolated examples for comparing APME
+remediation behavior:
+
+- `manual-lint-examples.yml` contains common lint findings that generally need
+  human review.
+- `aap-modernization-candidates.yml` contains AAP endpoint and template-ID
+  patterns intended to exercise modernization rules.
+
+These files use example-only hosts and URLs; they are not intended to run.

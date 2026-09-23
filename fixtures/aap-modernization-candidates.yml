@@ -1,0 +1,20 @@
+---
+- name: AAP modernization candidates
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Launch a job with a hard-coded template identifier
+      ansible.builtin.uri:
+        url: "https://aap.example.invalid/api/controller/v2/job_templates/42/launch/"
+        method: POST
+        status_code: 201
+      # APME-DEMO-CANDIDATE: replace the numeric template path with a named
+      # lookup or named_url-based workflow appropriate to the AAP version.
+
+    - name: Call a legacy controller endpoint
+      ansible.builtin.uri:
+        url: "https://aap.example.invalid/api/v2/job_templates/42/launch/"
+        method: POST
+        status_code: 201
+      # APME-DEMO-CANDIDATE: migrate the deprecated endpoint to the supported
+      # AAP gateway/controller API for the target platform version.
