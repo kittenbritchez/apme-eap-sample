@@ -1,0 +1,9 @@
+---
+- name: Configure the safe APME demo host
+  hosts: all
+  gather_facts: false
+  become: false
+  roles:
+    - role: web_demo
+      vars:
+        web_demo_package: nginx

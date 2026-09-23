@@ -1,0 +1,13 @@
+---
+- name: Install the demo web package
+  ansible.builtin.package:
+    name: nginx=1.24.0
+    state: present
+  # APME-DEMO-FINDING: use a supported variable or policy-controlled version.
+
+- name: Ensure the demo service is enabled
+  ansible.builtin.service:
+    name: "{{ web_demo_service_name }}"
+    enabled: true
+    state: started
+  # APME-DEMO-FINDING: add an explicit task tag for selective execution.
